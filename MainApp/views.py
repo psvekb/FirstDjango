@@ -1,9 +1,37 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+user = {
+    "name": "Сергей",
+    "surname": "Владимирович",
+    "lastname": "Пахомов",
+    "mobile": "8-912-63-78-630",
+    "email": "psv.ekb@gmail.com",
+}
+
+items = [
+    {"id": 1, "name": "Кроссовки abibas", "quantity": 5},
+    {"id": 2, "name": "Куртка кожаная", "quantity": 2},
+    {"id": 5, "name": "Coca-cola 1 литр", "quantity": 12},
+    {"id": 7, "name": "Картофель фри", "quantity": 0},
+    {"id": 8, "name": "Кепка", "quantity": 124},
+]
+
+
 # Create your views here.
 def home(request):
-    text = '''<h1>"Изучаем django"</h1>
-<strong>Автор</strong>: <i>Пахомов С.В.</i>
-'''
+    # print(f'{vars(request) = }')
+    text = f'<h1>"Изучаем django"</h1>\
+<strong>Автор</strong>: <i>{user['lastname']} {user['name'][0]}.{user['surname'][0]}.</i>'
+    return HttpResponse(text)
+
+
+def about(request):
+    # print(f'{vars(request) = }')
+    text = f'Имя: <strong>{user["name"]}</strong><br>\
+        Отчество: <strong>{user["surname"]}</strong><br>\
+        Фамилия: <strong>{user["lastname"]}</strong><br>\
+        телефон: <strong>{user["mobile"]}</strong><br>\
+        email: <strong>{user["email"]}</strong>'
+
     return HttpResponse(text)
