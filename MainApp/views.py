@@ -25,19 +25,11 @@ def home(request):
 
 
 def about(request):
-    # text = f'Имя: <strong>{user["name"]}</strong><br>\
-    #     Отчество: <strong>{user["surname"]}</strong><br>\
-    #     Фамилия: <strong>{user["lastname"]}</strong><br>\
-    #     телефон: <strong>{user["mobile"]}</strong><br>\
-    #     email: <strong>{user["email"]}</strong>'
-
     context = author
-
     return render(request, "about.html", context)
 
 
 def item(request, id):
-    text = f"Товар с {id=} не найден<br>"
     for item in items:
         if item["id"] == id:
             context = {
@@ -46,7 +38,6 @@ def item(request, id):
                 "name": item["name"],
                 "quantity": item["quantity"],
             }
-
             return render(request, "item.html", context)
 
     context = {
@@ -58,5 +49,4 @@ def item(request, id):
 
 
 def itemspage(request):
-    # context = {"items": items}
     return render(request, "items.html", context={"items": items})
