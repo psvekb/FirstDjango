@@ -20,10 +20,12 @@ items = [
 
 # Create your views here.
 def home(request):
-#     text = f'<h1>"Изучаем django"</h1>\
-# <strong>Автор</strong>: <i>{user['lastname']} {user['name'][0]}.{user['surname'][0]}.</i>'
-#     return HttpResponse(text)
-    return render(request, 'index.html')
+    #     text = f'<h1>"Изучаем django"</h1>\
+    # <strong>Автор</strong>: <i>{user['lastname']} {user['name'][0]}.{user['surname'][0]}.</i>'
+    #     return HttpResponse(text)
+    context = {"name": "Пахомов Сергей Владимирович", "email": "psv.ekb@gmail.com"}
+    return render(request, "index.html", context)
+
 
 def about(request):
     text = f'Имя: <strong>{user["name"]}</strong><br>\
@@ -35,9 +37,9 @@ def about(request):
 
 
 def item(request, id):
-    text = f'Товар с {id=} не найден<br>'
+    text = f"Товар с {id=} не найден<br>"
     for item in items:
-        if item['id'] == id:
+        if item["id"] == id:
             text = f'<strong>Карточка товара</strong><br>\
                 id: <strong>{item["id"]}</strong><br>\
                 Наименование: <strong>{item["name"]}</strong><br>\
@@ -48,7 +50,7 @@ def item(request, id):
 
 
 def itemspage(request):
-    text = f'<strong>Список товаров</strong> <br> <ol>'
+    text = f"<strong>Список товаров</strong> <br> <ol>"
     for item in items:
         text += f'<li>id: {item["id"]}, Наименование: {item["name"]}, количество: {item["quantity"]},\
             <a href="/item/{item["id"]}">страница товара</a></li>'
