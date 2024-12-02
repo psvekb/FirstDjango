@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start page</title>
+</head>
+<body>
+    <h3>/ <a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a></h3>
+
+    {% if not not_found %}
+        <h2>Карточка товара c id = {{id}}</h2>
+    
+        Наименование: <strong> {{name}}</strong><br>
+
+        Количество: 
+            <strong> 
+                {% if quantity > 0 %}
+                {{quantity}}
+                {% else %}
+                товар отсутствует
+                {% endif %}
+            </strong><br>
+    {% else %}
+        <h2>Товара c id = {{id}} не найден</h2>
+    {% endif %}
+    
+
+</body>
+</html>
