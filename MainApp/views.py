@@ -20,10 +20,10 @@ items = [
 
 # Create your views here.
 def home(request):
-    text = f'<h1>"Изучаем django"</h1>\
-<strong>Автор</strong>: <i>{user['lastname']} {user['name'][0]}.{user['surname'][0]}.</i>'
-    return HttpResponse(text)
-
+#     text = f'<h1>"Изучаем django"</h1>\
+# <strong>Автор</strong>: <i>{user['lastname']} {user['name'][0]}.{user['surname'][0]}.</i>'
+#     return HttpResponse(text)
+    return render(request, 'index.html')
 
 def about(request):
     text = f'Имя: <strong>{user["name"]}</strong><br>\
