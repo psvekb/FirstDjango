@@ -9,16 +9,13 @@
     <h3>/ <a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a></h3>
 
     <h2>Список товаров</h2>
-    <ol>
-        {% for item in items %}
-            {% if item.count > 0 %}
-                <li>id: {{item.id}}, Наименование: <a href="/item/{{item.id}}">{{item.name}}</a>, Бренд: {{item.brand}}, количество:{{item.count}}</li>
-            {% else %}
-                <li>id: {{item.id}}, Наименование: <a href="/item/{{item.id}}">{{item.name}}</a>, Бренд: {{item.brand}}, товар отсутствует</li>
-            {% endif %}
-        {% endfor %}
-    </ol>
     
+    {% for item in items %}
+        <div style="width:content; max-width: 20%;;border:1px,solid;margin:2px;padding:5px;float:left">
+         <p>  <strong> <a href="/item/{{item.id}}">{{item.name}} {{item.brand}}</a></strong> </p> 
+            <p>{{item.desc}}</p>
+        </div>
+    {% endfor %}
 
 </body>
 </html>
