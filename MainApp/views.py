@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+from .models import Item
 
 author = {
     "name": "Сергей",
@@ -8,14 +9,6 @@ author = {
     "mobile": "8-912-63-78-630",
     "email": "psv.ekb@gmail.com",
 }
-
-items = [
-    {"id": 1, "name": "Кроссовки abibas", "quantity": 5},
-    {"id": 2, "name": "Куртка кожаная", "quantity": 2},
-    {"id": 5, "name": "Coca-cola 1 литр", "quantity": 12},
-    {"id": 7, "name": "Картофель фри", "quantity": 0},
-    {"id": 8, "name": "Кепка", "quantity": 124},
-]
 
 
 # Create your views here.
@@ -30,23 +23,15 @@ def about(request):
 
 
 def item(request, id):
-    for item in items:
-        if item["id"] == id:
-            context = {
-                "id": item["id"],
-                "not_found": False,
-                "name": item["name"],
-                "quantity": item["quantity"],
-            }
-            return render(request, "item.html", context)
-
-    context = {
-        "id": id,
-        "not_found": True,
-    }
-
-    return render(request, "item.html", context)
+    try:
+        item = Item.objects.get(id = id)
+        context={"item": item}
+        return render(request, "item.html", context)
+    except:
+        return HttpResponseNotFound(f'Товар c {id = } не найден')
 
 
-def itemspage(request):
-    return render(request, "items.html", context={"items": items})
+def get_items(request):
+    context={"items": Item.objects.all()}
+    # print(context)
+    return render(request, "items.html", context)

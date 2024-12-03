@@ -8,23 +8,20 @@
 <body>
     <h3>/ <a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a></h3>
 
-    {% if not not_found %}
-        <h2>Карточка товара c id = {{id}}</h2>
-    
-        Наименование: <strong> {{name}}</strong><br>
 
-        Количество: 
-            <strong> 
-                {% if quantity > 0 %}
-                {{quantity}}
-                {% else %}
-                товар отсутствует
-                {% endif %}
-            </strong><br>
-    {% else %}
-        <h2>Товара c id = {{id}} не найден</h2>
-    {% endif %}
-    
+    <h2>Карточка товара c id = {{item.id}}</h2>
+
+    Наименование: <strong> {{item.name}}</strong><br>
+    Бренд: <strong> {{item.brand}}</strong><br>
+
+    Количество: 
+        <strong> 
+            {% if item.count > 0 %}
+            {{item.count}}
+            {% else %}
+            товар отсутствует
+            {% endif %}
+        </strong><br>   
 
 </body>
 </html>
