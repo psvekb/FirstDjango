@@ -25,7 +25,13 @@ def about(request):
 def item(request, id):
     try:
         item = Item.objects.get(id = id)
-        context={"item": item}
+        print(item)
+        colors = item.colors.all()
+        print(f'{colors=}')
+        for color in colors:
+            print(f'{color.name=}')
+        context={"item": item, 'colors':colors}
+        print(context)
         return render(request, "item.html", context)
     except:
         return HttpResponseNotFound(f'Товар c {id = } не найден')

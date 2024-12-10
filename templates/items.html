@@ -13,12 +13,13 @@
 {% block content %}
     {{ block.super }} 
     <h2>Список товаров</h2>
-    
-    {% for item in items %}
-        <div class="item">
-         <p>  <strong> <a href="{% url 'item-detail' item.id %}">{{item.name}} {{item.brand}}</a></strong> </p> 
-            <p>{{item.desc}}</p>
-        </div>
-    {% endfor %}
+    <div class="items" >
+            {% for item in items %}
+            <div class="item">
+                <p>  <strong> <a href="{% url 'item-detail' item.id %}">{{item.name}} {{item.brand}}</a></strong> </p> 
+                <p>{{item.desc}}</p>
+            </div>
+            {% endfor %}
+    </div>
 
 {% endblock  %}

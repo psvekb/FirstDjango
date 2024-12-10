@@ -3,23 +3,37 @@
 
 {% block style %}
      {{ block.super }} 
+     <style>
+        ul{
+            list-style-type: square;
+        }
+        span{
+            color:black;
+        }
+     </style>
 {% endblock style %}    
 
 {% block content %}
     {{ block.super }} 
     <h2>Карточка товара c id = {{item.id}}</h2>
 
-    Наименование: <strong> {{item.name}}</strong><br>
-    Бренд: <strong> {{item.brand}}</strong><br>
+    <div class="item">
+        Наименование: <strong> {{item.name}}</strong><br>
+        Бренд: <strong> {{item.brand}}</strong><br>
 
-    Количество: 
-        <strong> 
-            {% if item.count > 0 %}
-            {{item.count}}
-            {% else %}
-            товара нет на складе
-            {% endif %}
-        </strong><br>   
-
+        Количество: 
+            <strong> 
+                {% if item.count > 0 %}
+                {{item.count}}
+                {% else %}
+                товара нет на складе
+                {% endif %}
+            </strong>
+        <ul>
+            {% for color in colors %}
+                <li style='color:{{color.name}};'><span>{{color.name}}</span></li>
+            {% endfor %}
+        </ul>    
+    </div>
     
-{% endblock  %}
+{% endblock  %} 
