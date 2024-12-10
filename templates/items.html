@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Start page</title>
-</head>
-<body>
-    <h3>/ <a href="/">Home</a> / <a href="/items">Items</a> / <a href="/about">About</a></h3>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Items page{% endblock  %}
 
+{% block style %}
+     {{ block.super }} 
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+{% endblock style %}    
+
+
+
+{% block content %}
+    {{ block.super }} 
     <h2>Список товаров</h2>
     
     {% for item in items %}
-        <div style="width:content; max-width: 20%;;border:1px,solid;margin:2px;padding:5px;float:left">
-         <p>  <strong> <a href="/item/{{item.id}}">{{item.name}} {{item.brand}}</a></strong> </p> 
+        <div class="item">
+         <p>  <strong> <a href="{% url 'item-detail' item.id %}">{{item.name}} {{item.brand}}</a></strong> </p> 
             <p>{{item.desc}}</p>
         </div>
     {% endfor %}
 
-</body>
-</html>
+{% endblock  %}
